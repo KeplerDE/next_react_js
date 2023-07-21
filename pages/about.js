@@ -1,6 +1,7 @@
 
 import React from 'react'
 import Header from '@/components/shared/Header'
+import BaseLayout from '@/components/layouts/BaseLayout'
 
 // functional component - arrow function
 const About = () => {
