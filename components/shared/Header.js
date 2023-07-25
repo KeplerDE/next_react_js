@@ -1,31 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem
+} from 'reactstrap';
 
-class Header extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <div className='parent-class'>
-        </div>
-        
-        <Link style={{'fontSize': '50px'}} href="/"> Home </Link>{' '}
-        <Link href="/about">About</Link>
-        <Link href="/portfolios">Portfolio</Link>
-        <Link href="/blogs">Blog</Link>
-        <Link href="/cv">CV</Link>
-        <style jsx>
-          {`
-          a {
-            font-size: 20px;
-          }
-          .customClass {
-            color: red;
-          }
-          `}
-        </style>
-      </React.Fragment>
-    );
-  }
+
+const BsNavLink = props => {
+  const { href, title } = props;
+  return (
+    <Link href={href}>
+      <a className="nav-link port-navbar-link">{title}</a>
+    </Link>
+  )
+}
+
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <div>
+      <Navbar
+        className="port-navbar port-default absolute"
+        color="transparent"
+        dark
+        expand="md">
+          <Link href="/">
+            <a className="port-navbar-brand">Denis Osipov</a>
+          </Link>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/" title="Home"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/about" title="About"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/portfolios" title="Portfolios"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/blogs" title="Blogs"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/cv" title="Cv"/>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 }
 
 export default Header;

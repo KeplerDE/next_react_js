@@ -1,9 +1,22 @@
 @import "./shared/fonts";
 // Pages
 @import './index';
+// Components
+@import "./components/header";
+.absolute {
+  position: absolute;
+}
 
 html, body {
   width: 100%;
   height: 100%;
   font-family: "Montserrat", "Helvetica";
+}
+
+
+.self-typed {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
