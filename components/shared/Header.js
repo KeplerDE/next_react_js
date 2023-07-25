@@ -6,7 +6,6 @@ class Header extends React.Component {
     return (
       <React.Fragment>
         <div className='parent-class'>
-        <h1>Test Scss </h1> {/* Corrected closing h1 tag */}
         </div>
         
         <Link style={{'fontSize': '50px'}} href="/"> Home </Link>{' '}

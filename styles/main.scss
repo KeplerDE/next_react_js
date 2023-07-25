@@ -1,18 +1,9 @@
 @import "./shared/fonts";
+// Pages
+@import './index';
 
-
-  html, body {
-    font-family: "Montserrat", "Helvetica";
-  }
-
-  // SCSS
-
-.parent-class  {
-  h1, h2 {
-    color: rgb(55, 255, 0);
-  }
-
-  &-date {
-    color: rgb(51, 255, 0); 
-  }
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: "Montserrat", "Helvetica";
 }
