@@ -1,12 +1,14 @@
-import React from 'react'
-import BaseLayout from '@/components/layouts/BaseLayout'
+import BaseLayout from "../components/layouts/BaseLayout";
+import BasePage from "../components/BasePage";
 
-function blogs() {
+const Blogs = () => {
   return (
-    <div>
-      Blogs
-    </div>
+    <BaseLayout>
+      <BasePage>
+        <h1>I am blogs page</h1>
+      </BasePage>
+    </BaseLayout >
   )
 }
 
-export default blogs
+export default Blogs;

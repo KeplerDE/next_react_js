@@ -1,26 +1,30 @@
 import BaseLayout from "../../components/layouts/BaseLayout";
-import axios from "axios";
+import BasePage from "../../components/BasePage";
 import Link from "next/link";
+import axios from "axios";
 
 const Portfolios = ({posts}) => {
-  console.log(posts)
 
   const renderPosts = () => {
     return posts.map(post =>
-        <li key={post.id}>
-          <Link href={`/portfolios/${post.id}`}>
-              {post.title}
-          </Link>
-        </li>
-      )
+      <li key={post.id}>
+        <Link href={`/portfolios/${post.id}`}>
+          <a>
+            {post.title}
+          </a>
+        </Link>
+      </li>
+    )
   }
 
   return (
     <BaseLayout>
-      <h1>I am portfolios page</h1>
-      <ul>
-        {renderPosts()}
-      </ul>
+      <BasePage>
+        <h1>I am portfolios page</h1>
+        <ul>
+          {renderPosts()}
+        </ul>
+      </BasePage>
     </BaseLayout >
   )
 }
