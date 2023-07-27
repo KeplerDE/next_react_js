@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import BaseLayout from "../../components/layouts/BaseLayout";
 import BasePage from "../../components/BasePage";
 import Link from "next/link";
@@ -5,6 +6,14 @@ import axios from "axios";
 
 const Portfolios = ({posts}) => {
 
+  useEffect(() => {
+    async function getPosts() {
+      const res = await fetch('/api/v1/posts');
+      const data = await res.json();
+    }
+
+    getPosts();
+  }, [])
   const renderPosts = () => {
     return posts.map(post =>
       <li key={post.id}>
