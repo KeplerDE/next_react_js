@@ -3,10 +3,17 @@ import BaseLayout from '@/components/layouts/BaseLayout';
 
 import { Container, Row, Col } from 'reactstrap';
 import Typed from "react-typed";
+import { useGetUser } from '@/actions/user';
 
 const roles = ["Developer", "Python", "Django", "React JS", "NextJS"];
 class Index extends React.Component {
+
+
   render() {
+
+  const { data, error, loading } = useGetUser();
+  debugger
+    
     return (
       <BaseLayout className="cover">
         <div className="main-section">
