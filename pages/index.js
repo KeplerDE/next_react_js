@@ -6,16 +6,15 @@ import Typed from "react-typed";
 import { useGetUser } from '@/actions/user';
 
 const roles = ["Developer", "Python", "Django", "React JS", "NextJS"];
-class Index extends React.Component {
+const Index = () => {
 
+  const { data, loading } = useGetUser();
 
-  render() {
-
-  const { data, error, loading } = useGetUser();
-  debugger
-    
-    return (
-      <BaseLayout className="cover">
+  return (
+    <BaseLayout
+      user={data}
+      loading={loading}
+      className="cover">
         <div className="main-section">
           <div className="background-image">
             <img src="/images/background-index.png" />
@@ -70,6 +69,6 @@ class Index extends React.Component {
       </BaseLayout>
     )
   }
-}
+
 
 export default Index;
