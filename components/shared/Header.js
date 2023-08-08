@@ -27,7 +27,8 @@ const LoginLink = () =>
   <BsNavLink href="/api/v1/login" title="Login" />
 
 const LogoutLink = () =>
-  <span className="nav-link port-navbar-link clickable">Logout</span>
+  <BsNavLink href="/api/v1/logout" title="Logout" />
+ 
 
   const Header = ({user, loading}) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,8 +60,9 @@ const LogoutLink = () =>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/cv" title="Cv"/>
             </NavItem>
+
           </Nav>
-          <Nav navbar>
+          <Nav navbar>  
           { !loading &&
               <>
                 { user &&

@@ -9,7 +9,7 @@ const roles = ["Developer", "Python", "Django", "React JS", "NextJS"];
 const Index = () => {
 
   const { data, loading } = useGetUser();
-
+  debugger
   return (
     <BaseLayout
       user={data}
