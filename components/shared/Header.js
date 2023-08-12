@@ -63,6 +63,9 @@ const LogoutLink = () =>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/secret" title="Secret"/>
             </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/secretssr" title="SecretSSR"/>
+            </NavItem>
           </Nav>
           <Nav navbar>  
           { !loading &&
