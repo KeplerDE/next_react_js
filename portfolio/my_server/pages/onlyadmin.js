@@ -14,4 +14,4 @@ const OnlyAdmin = ({user, loading}) => {
   )
 }
 
-export default withAuth(OnlyAdmin)('admin');
+export default withAuth(OnlyAdmin)('guest');

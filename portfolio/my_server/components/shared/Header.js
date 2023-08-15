@@ -60,7 +60,7 @@ const LogoutLink = () =>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/cv" title="Cv"/>
             </NavItem>
-            <NavItem className="port-navbar-item">
+            {/* <NavItem className="port-navbar-item">
               <BsNavLink href="/secret" title="Secret"/>
             </NavItem>
             <NavItem className="port-navbar-item">
@@ -69,6 +69,9 @@ const LogoutLink = () =>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/onlyadmin" title="Admin"/>
             </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/onlyadminssr" title="AdminSSR"/>
+            </NavItem> */}
           </Nav>
           <Nav navbar>  
           { !loading &&
