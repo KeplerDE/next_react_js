@@ -1,39 +1,33 @@
-
-
+// Импорт модуля express 
 const express = require('express');
+
+// Создание экземпляра приложения express
 const server = express();
-const config = require('./config/dev');
 
-// Импортируем mongoose
-const mongoose = require('mongoose'); 
+// Описание асинхронной функции запуска сервера
+async function runServer() {
 
-// Функция для подключения к базе данных 
-async function connectToDb() {
+  // Подключение к базе данных 
+  await require('./db').connect();
+  
+  // Регистрация маршрута для CRUD операций с портфолио
+  server.use('/api/v1/portfolios', require('./routes/portfolios'));
 
-  // Используем async/await
-  try {
+  // Получение номера порта из ENV или 3001 по умолчанию
+  const PORT = parseInt(process.env.PORT, 10) || 3001;
+
+  // Запуск сервера на указанном порту
+  server.listen(PORT, (err) => {
     
-    // Подключаемся и передаем параметры  
-    await mongoose.connect(config.DB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    // Обработка ошибки, если сервер не запустился
+    if (err) console.error(err);
     
-    console.log('Connected to DB!');
+    // Логирование успешного запуска сервера
+    console.log('Server ready on port:', PORT);
     
-  } catch (error) {
-    console.log('Connection error', error);
-  }
+  })
 
 }
 
-// Вызываем функцию подключения
-connectToDb();
-
-server.use('/api/v1/portfolios', require('./routes/portfolios'));
-
-const PORT = parseInt(process.env.PORT, 10) || 3001;
-server.listen(PORT, (err) => {
-  if (err) console.error(err);
-  console.log('Server ready on port:', PORT);
-})
+// Вызов функции запуска сервера 
+runServer();
