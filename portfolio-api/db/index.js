@@ -4,6 +4,8 @@ const config = require('../config/dev');
 // Импорт mongoose - ОРМ для MongoDB
 const mongoose = require('mongoose');
 
+require('./models/portfolio');
+
 // Экспорт объекта с методом подключения к БД
 exports.connect = () => {
     return mongoose.connect(
