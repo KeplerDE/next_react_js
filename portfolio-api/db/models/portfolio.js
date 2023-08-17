@@ -4,11 +4,15 @@ const Schema = mongoose.Schema; // получаем конструктор Schem
 
 // создаем схему Portfolio используя конструктор Schema
 const portfolioSchema = new Schema({
-  // поле title - строка, обязательное
-  title: { type: String, required: true },
-
-  // поле description - строка, необязательное  
-  description: String 
+title: { type: String, required: true, maxlength: 128 },
+company: { type: String, required: true, maxlength: 64},
+companyWebsite: { type: String, required: true, maxlength: 128},
+location: { type: String, required: true },
+jobTitle: { type: String, required: true },
+description: { type: String, required: true },
+startDate: { type: Date, required: true},
+endDate: { type: Date },
+createdAt: { type: Date, default: Date.now }
 }); 
 
 // создаем и экспортируем модель Portfolio 
