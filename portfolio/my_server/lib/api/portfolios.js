@@ -1,14 +1,24 @@
+// Импорт axios для запросов
 import axios from 'axios';
 
 class PortfolioApi {
 
-  getAll() {
-    return axios.get('http://localhost:3001/api/v1/portfolios')
+  // Конструктор класса
+  constructor() {
+    this.apiUrl = process.env.PORTFOLIO_API_URL + '/portfolios'; // Базовый URL
   }
 
-  getById(id) {
-    return axios.get(`http://localhost:3001/api/v1/portfolios/${id}`)
+  // Метод для получения всех портфолио
+  getAll() {
+    return axios.get(this.apiUrl) 
   }
+
+  // Метод для получения портфолио по ID
+  getById(id) {
+    return axios.get(`${this.apiUrl}/${id}`)
+  }
+
 }
 
+// Экспорт класса 
 export default PortfolioApi;
