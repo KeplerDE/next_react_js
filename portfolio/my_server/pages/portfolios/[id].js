@@ -1,31 +1,47 @@
+import BaseLayout from '@/components/layouts/BaseLayout'; 
 
-import BaseLayout from '@/components/layouts/BaseLayout';
-import BasePage from '@/components/BasePage';
-import { useGetPostById } from '@/actions';
-import { useRouter } from 'next/router';
-import { useGetUser } from '@/actions/user';
+import BasePage from '@/components/BasePage'; 
 
-const Portfolio = () => {
-  const router = useRouter();
-  const {data: portfolio, error, loading} = useGetPostById(router.query.id);
-  const { data: dataU, loading: loadingU } = useGetUser();
+import { useGetUser } from '@/actions/user'; 
+
+import PortfolioApi from '@/lib/api/portfolios'; // Импорт API для работы с портфолио
+
+const Portfolio = ({portfolio}) => {
+
+  const { data: dataU, loading: loadingU } = useGetUser(); // Получение данных и статуса загрузки пользователя
 
   return (
-    <BaseLayout user={dataU} loading={loadingU}>
-      <BasePage>
-      { loading && <p>Loading Data...</p>}
-      { error && <div className="alert alert-danger">{error.message}</div>}
-      { portfolio &&
-        <>
-          <h1>I am Portfolio page</h1>
-          <h1>{portfolio.title}</h1>
-          <p>BODY: {portfolio.body}</p>
-          <p>ID: {portfolio.id}</p>
-        </>
-      }
+
+    <BaseLayout user={dataU} loading={loadingU}> // Передача данных пользователя в лэйаут
+
+      <BasePage header="Portfolio Detail"> // Отображение заголовка страницы
+
+        {
+
+          JSON.stringify(portfolio) // Вывод полученных данных портфолио
+
+        }
+
       </BasePage>
+
     </BaseLayout>
+
   )
+
 }
 
-export default Portfolio;
+
+
+export async function getServerSideProps({query}) {
+
+  const json = await new PortfolioApi().getById(query.id); // Запрос данных портфолио по id из query
+
+  const portfolio = json.data; // Получение данных портфолио из ответа
+
+  return {props: { portfolio }}; // Передача этих данных в качестве пропса
+
+}
+
+
+
+export default Portfolio; // Экспорт компонента страницы
