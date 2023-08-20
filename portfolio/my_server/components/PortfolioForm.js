@@ -1,8 +1,22 @@
+
 import DatePicker from "react-datepicker";
+import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 
 const PortfolioForm = ({onSubmit}) => {
-  const { register, handleSubmit } = useForm();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    register({name: 'startDate'});
+    register({name: 'endDate'});
+  }, [register])
+
+  const handleDateChange = (dateType, setDate) => date => {
+    setValue(dateType, date);
+    setDate(date);
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -73,8 +87,8 @@ const PortfolioForm = ({onSubmit}) => {
         <div>
           <DatePicker
             showYearDropdown
-            selected={new Date()}
-            onChange={() => {}}
+            selected={startDate}
+            onChange={handleDateChange('startDate', setStartDate)}
           />
         </div>
       </div>
@@ -83,11 +97,31 @@ const PortfolioForm = ({onSubmit}) => {
         <label htmlFor="endDate">End Date</label>
         <div>
           <DatePicker
+            disabled={!endDate}
             showYearDropdown
-            selected={new Date()}
-            onChange={() => {}}
+            selected={endDate}
+            onChange={handleDateChange('endDate', setEndDate)}
           />
         </div>
+      </div>
+      <div className="form-group">
+        { endDate &&
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => handleDateChange('endDate', setEndDate)(null)}>
+            No End Date
+          </button>
+        }
+        { !endDate &&
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={
+              () => handleDateChange('endDate', setEndDate)(new Date(new Date().setHours(0,0,0,0)))}>
+            Set End Date
+          </button>
+        }
       </div>
       <button
         type="submit"
