@@ -18,6 +18,10 @@ class PortfolioApi {
     return axios.get(`${this.apiUrl}/${id}`)
   }
 
+  createPortfolio(data) {
+    return axios.post(this.apiUrl, data);
+  }
+
 }
 
 // Экспорт класса 
