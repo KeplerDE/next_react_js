@@ -34,16 +34,33 @@ exports.getPortfolioById = async (req, res) => {
 }
 
 
-// Контроллер для создания портфолио
 exports.createPortfolio = async (req, res) => {
 
-  // Получаем данные портфолио из тела запроса
-  const data = req.body;
-  
-  // Логируем данные (для отладки)
-  console.log(data);
+  // Извлекаем данные портфолио из запроса
+  const portfolioData = req.body;
 
-  // Возвращаем ответ с сообщением
-  return res.json({message: 'Creating Portfolio...'});
+  // Получаем ID пользователя 
+  const userId = 'google-oauth2|118097200051766570711';
+
+  // Создаем экземпляр Портфолио 
+  const portfolio = new Portfolio(portfolioData);
+
+  // Устанавливаем userID
+  portfolio.userId = userId;
+
+  try {
+
+    // Сохраняем портфолио в БД
+    const newPortfolio = await portfolio.save();
+    
+    // Возвращаем сохраненное портфолио
+    return res.json(newPortfolio);
+
+  } catch(error) {
+
+    // Обрабатываем ошибку 
+    return res.status(422).send(error.message);
+
+  }
 
 }
