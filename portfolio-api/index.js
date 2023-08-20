@@ -3,12 +3,16 @@ const express = require('express');
 
 // Создание экземпляра приложения express
 const server = express();
+const bodyParser = require('body-parser');
 
 // Описание асинхронной функции запуска сервера
 async function runServer() {
 
   // Подключение к базе данных 
   await require('./db').connect();
+  
+
+  server.use(bodyParser.json());
   
   // Регистрация маршрута для CRUD операций с портфолио
   server.use('/api/v1/portfolios', require('./routes/portfolios'));

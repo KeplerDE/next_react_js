@@ -32,3 +32,18 @@ exports.getPortfolioById = async (req, res) => {
   }
 
 }
+
+
+// Контроллер для создания портфолио
+exports.createPortfolio = async (req, res) => {
+
+  // Получаем данные портфолио из тела запроса
+  const data = req.body;
+  
+  // Логируем данные (для отладки)
+  console.log(data);
+
+  // Возвращаем ответ с сообщением
+  return res.json({message: 'Creating Portfolio...'});
+
+}
