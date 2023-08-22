@@ -3,10 +3,12 @@ import BasePage from '@/components/BasePage';
 import withAuth from '@/hoc/withAuth';
 import { Row, Col } from 'reactstrap';
 import PortfolioForm from '@/components/PortfolioForm';
-import { createPortfolio } from '@/actions/portfolios';
+import { useCreatePortfolio } from '@/actions/portfolios';
 
 
 const PortfolioNew = ({user, loading: userLoading}) => {
+  const [createPortfolio, {data, loading, error}] = useCreatePortfolio();
+  debugger
 
   // Обертка над функцией createPortfolio  
   const _createPortfolio = (data) => {
