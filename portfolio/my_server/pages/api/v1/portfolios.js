@@ -1,28 +1,28 @@
-// Импортируем API для портфолио 
+// Импорт API для портфолио
 import PortfolioApi from '@/lib/api/portfolios';
 
-// Импортируем утилиты для Auth0
+// Импорт утилит Auth0  
 import auth0 from '@/utils/auth0';
 
 export default async function createPortfolio(req, res) {
 
   try {
 
-    // Получаем access token из сессии
+    // Получаем access token
     const { accessToken } = await auth0.getSession(req);
     
-    // Логируем для отладки
-    console.log(accessToken) 
+    // Создаём экземпляр API, передавая токен 
+    const api = new PortfolioApi(accessToken);
+    
+    // Вызываем метод создания портфолио
+    const json = await api.createPortfolio(req.body); 
 
-    // Создаем портфолио, передавая данные
-    await new PortfolioApi().createPortfolio(req.body);
-
-    // Возвращаем ответ об успехе
-    return res.json({message: 'Portfolio was created!'});
+    // Возвращаем данные из ответа
+    return res.json(json.data);
 
   } catch(e) {
-    
-    // Обрабатываем ошибку
+
+    // Обработка ошибки
     return res.status(e.status || 400).end(e.message);
 
   }

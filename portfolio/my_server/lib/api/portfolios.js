@@ -1,28 +1,39 @@
-// Импорт axios для запросов
-import axios from 'axios';
+// Импортируем axios
+import axios from 'axios'; 
 
 class PortfolioApi {
 
-  // Конструктор класса
-  constructor() {
-    this.apiUrl = process.env.PORTFOLIO_API_URL + '/portfolios'; // Базовый URL
+  // Конструктор принимает access token
+  constructor(accessToken) {
+
+    this.config = {}
+
+    // Если есть токен - добавляем его в заголовки запросов
+    if (accessToken) {
+      this.config.headers = {
+        authorization: `Bearer ${accessToken}`  
+      }
+    }
+
+    this.apiUrl = process.env.PORTFOLIO_API_URL + '/portfolios';
+
   }
 
-  // Метод для получения всех портфолио
+  // Методы для запросов к API
+
   getAll() {
-    return axios.get(this.apiUrl) 
+    return axios.get(this.apiUrl)
   }
 
-  // Метод для получения портфолио по ID
   getById(id) {
-    return axios.get(`${this.apiUrl}/${id}`)
+    return axios.get(`${this.apiUrl}/${id}`) 
   }
 
   createPortfolio(data) {
-    return axios.post(this.apiUrl, data);
+    return axios.post(this.apiUrl, data, this.config);
   }
 
 }
 
-// Экспорт класса 
+// Экспорт класса API
 export default PortfolioApi;
