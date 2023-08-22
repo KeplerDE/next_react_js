@@ -23,7 +23,7 @@ export default async function createPortfolio(req, res) {
   } catch(e) {
 
     // Обработка ошибки
-    return res.status(e.status || 400).end(e.message);
+    return res.status(e.status || 422).json(e.response.data);
 
   }
 
