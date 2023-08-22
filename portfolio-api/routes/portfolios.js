@@ -10,11 +10,15 @@ const { checkJwt } = require('../controllers/auth');
 const {
   getPortfolios,
   getPortfolioById,
-  createPortfolio } = require('../controllers/portfolios');
+  createPortfolio,
+  updatePortfolio } = require('../controllers/portfolios');
 
 router.get('', getPortfolios);
 router.get('/:id', getPortfolioById);
 
+
+// TODO: создать промежуточное программное обеспечение для проверки прав администратора!!!!
 router.post('', checkJwt, createPortfolio);
+router.patch('/:id', checkJwt, updatePortfolio);
 
 module.exports = router;

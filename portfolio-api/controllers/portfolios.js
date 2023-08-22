@@ -40,7 +40,7 @@ exports.createPortfolio = async (req, res) => {
   const portfolioData = req.body;
 
   // Получаем ID пользователя 
-  const userId = 'google-oauth2|118097200051766570711';
+  const userId = req.user.sub;;
 
   // Создаем экземпляр Портфолио 
   const portfolio = new Portfolio(portfolioData);
@@ -63,4 +63,16 @@ exports.createPortfolio = async (req, res) => {
 
   }
 
+}
+
+
+exports.updatePortfolio = async (req, res) => {
+  const { body, params: {id}} = req;
+
+  try {
+    const updatedPortfolio = await Portfolio.findOneAndUpdate({_id: id}, body, {new: true, runValidators: true})
+    return res.json(updatedPortfolio);
+  } catch(error) {
+    return res.status(422).send(error.message);
+  }
 }
