@@ -20,6 +20,10 @@ class PortfolioApi {
   }
 
   // Методы для запросов к API
+  getById(id) {
+    return axios.get(`${this.apiUrl}/${id}`);
+  }
+  
 
   getAll() {
     return axios.get(this.apiUrl)
