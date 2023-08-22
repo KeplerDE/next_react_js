@@ -1,4 +1,5 @@
-import useSWR from 'swr'
+
+import { useState } from 'react';   
 
 export const fetcher = (url) =>
   fetch(url).then(async res => {
@@ -11,4 +12,39 @@ export const fetcher = (url) =>
     }
   });
 
-    
+export function useApiHandler(apiCall) {
+
+  // Состояние для хранения данных и статуса запроса
+  const [reqState, setReqState] = useState({ 
+    error: null,
+    data: null, 
+    loading: false
+  });
+
+  // Обработчик запроса
+  const handler = async (...data) => {
+
+    // Устанавливаем загрузку перед запросом
+    setReqState({error: null, data: null, loading: true});
+
+    try {
+      // Делаем запрос к API  
+      const json = await apiCall(...data);
+
+      // Если успешно - сохраняем данные    
+      setReqState({error: null, data: json.data, loading: false});
+
+    } catch(e) {
+
+      // Если ошибка - сохраняем сообщение    
+      const message = (e.response && e.response.message) || 'Ooops, something went wrong...';
+      
+      setReqState({error: message, data: null, loading: false});
+    }
+
+  }
+
+  // Возвращаем обработчик и состояние
+  return [handler, {...reqState}]; 
+
+}    
