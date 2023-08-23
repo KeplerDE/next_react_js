@@ -33,13 +33,14 @@ export function useApiHandler(apiCall) {
 
       // Если успешно - сохраняем данные    
       setReqState({error: null, data: json.data, loading: false});
-
+      return json.data;
     } catch(e) {
 
       // Если ошибка - сохраняем сообщение    
       const message = (e.response && e.response.data) || 'Ooops, something went wrong...';
       
       setReqState({error: message, data: null, loading: false});
+      return Promise.reject(message);
     }
 
   }
