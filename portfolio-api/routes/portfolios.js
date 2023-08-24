@@ -11,7 +11,8 @@ const {
   getPortfolios,
   getPortfolioById,
   createPortfolio,
-  updatePortfolio } = require('../controllers/portfolios');
+  updatePortfolio,
+  deletePortfolio  } = require('../controllers/portfolios');
 
 router.get('', getPortfolios);
 router.get('/:id', getPortfolioById);
@@ -20,5 +21,6 @@ router.get('/:id', getPortfolioById);
 // TODO: создать промежуточное программное обеспечение для проверки прав администратора!!!!
 router.post('', checkJwt, createPortfolio);
 router.patch('/:id', checkJwt, updatePortfolio);
+router.delete('/:id', checkJwt, deletePortfolio);
 
 module.exports = router;
