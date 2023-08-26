@@ -26,4 +26,4 @@ const PortfolioNew = ({user, loading: userLoading}) => {
   )
 }
 
-export default withAuth(PortfolioNew)('guest');
+export default withAuth(PortfolioNew)('admin');

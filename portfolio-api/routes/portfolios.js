@@ -13,8 +13,8 @@ router.get('', getPortfolios);
 router.get('/:id', getPortfolioById);
 
 // TODO: create middleware to check for admin rights!!!!
-router.post('', checkJwt, checkRole('guest'), createPortfolio);
-router.patch('/:id', checkJwt, checkRole('guest'), updatePortfolio);
-router.delete('/:id', checkJwt, checkRole('guest'), deletePortfolio);
+router.post('', checkJwt, checkRole('admin'), createPortfolio);
+router.patch('/:id', checkJwt, checkRole('admin'), updatePortfolio);
+router.delete('/:id', checkJwt, checkRole('admin'), deletePortfolio);
 
 module.exports = router;
