@@ -16,6 +16,7 @@ async function runServer() {
   
   // Регистрация маршрута для CRUD операций с портфолио
   server.use('/api/v1/portfolios', require('./routes/portfolios'));
+  server.use('/api/v1/blogs', require('./routes/blogs'));
 
   // Получение номера порта из ENV или 3001 по умолчанию
   const PORT = parseInt(process.env.PORT, 10) || 3001;

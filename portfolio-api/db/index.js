@@ -5,6 +5,7 @@ const config = require('../config/dev');
 const mongoose = require('mongoose');
 
 require('./models/portfolio');
+require('./models/blog'); 
 
 // Экспорт объекта с методом подключения к БД
 exports.connect = () => {
