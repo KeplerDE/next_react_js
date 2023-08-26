@@ -40,14 +40,20 @@ const Index = () => {
                   </div>
                 </div>
               </Col>
+
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the portfolio website of Denis Osipov.
-                    Get informed, collaborate and discover projects I was working on through the years!
+                  "Hi there! I'm Denis, a junior developer. My portfolio represents projects I've built while learning.
+                   I'd appreciate your advice on improving my skills!"
                   </h1>
                 </div>
-                <Typed
+
+                <div className="hero-welcome-bio">
+                  <h1>
+                    Let's take a look on my work.
+                  </h1>
+                  <Typed
                   loop
                   typeSpeed={70}
                   backSpeed={70}
@@ -58,10 +64,6 @@ const Index = () => {
                   className="self-typed"
                   cursorChar="|"
                 />
-                <div className="hero-welcome-bio">
-                  <h1>
-                    Let's take a look on my work.
-                  </h1>
                 </div>
               </Col>
             </Row>

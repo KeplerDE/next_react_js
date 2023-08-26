@@ -1,7 +1,7 @@
 
 // Index -----------
 .cover {
-  background-image: linear-gradient(45deg,#00aeef 0%,#096fb9 100%);
+  background-image: linear-gradient(45deg,  #73735ff3 0%,#2a285c 100%);
   overflow: hidden;
   position: relative;
 }
@@ -50,15 +50,15 @@
 }
 
 .hero-welcome-text > h1 {
-  color: white;
+  color: rgb(236, 236, 227);
   text-transform: uppercase;
   font-size: 27px;
-  margin-top: 80px;
+  margin-top: 0px;
 }
 
 .hero-welcome-bio {
-  margin-top: 20px;
-  color: white;
+  margin-top: 100px;
+  color: rgb(237, 227, 227);
 
   .fa-stack {
     font-size: 28px;
