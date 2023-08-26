@@ -1,26 +1,30 @@
-// Импортируем модули для работы с JWT
-const jwt = require('express-jwt'); 
+const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
+const config = require('../config/dev');
 
-// Middleware для проверки JWT токена
+// Authentication middleware
+// This middleware will check access token in authorization headers
+// of a request
+// It will verify access token against Auth0 JSON web key set
 exports.checkJwt = jwt({
-
-  // Используем jwksRsa для получения  
-  // публичного ключа из Auth0
-  secret: jwksRsa.expressJwtSecret({ 
+  secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
-    jwksRequestsPerMinute: 10, 
+    jwksRequestsPerMinute: 10,
     jwksUri: 'https://dev-ypotovbkxufo3abq.us.auth0.com/.well-known/jwks.json'
   }),
-  
-  // Проверяем аудиторию токена
-  audience: 'https://dev-ypotovbkxufo3abq.us.auth0.com/api/v2/',  
-
-  // Проверяем эмитента токена
-  issuer: 'https://dev-ypotovbkxufo3abq.us.auth0.com/',   
-
-  // Проверяем алгоритм подписи токена
+  audience: 'https://dev-ypotovbkxufo3abq.us.auth0.com/api/v2/',
+  issuer: 'https://dev-ypotovbkxufo3abq.us.auth0.com/',
   algorithms: ['RS256']
-
 });
+
+exports.checkRole = role => (req, res, next) => {
+  const user = req.user;
+  console.log(user)
+
+  if (user && user[config.AUTH0_NAMESPACE + '/roles'].includes(role)) {
+    next();
+  } else {
+    return res.status(401).send('You are not authorized to access this resource!')
+  }
+}
