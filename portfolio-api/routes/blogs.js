@@ -14,6 +14,6 @@ const {
 
   router.post('', checkJwt, checkRole('admin'), createBlog);
 
-router.get('', getBlogs);
+
 
 module.exports = router;

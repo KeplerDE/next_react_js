@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Blog = mongoose.model('Blog');
+// const mongoose = require('mongoose');
+const Blog = require('../db/models/blog');
 
 exports.getBlogs = async (req, res) => {
   const blogs = await Blog.find({status: 'published'}).sort({createdAt: -1});
