@@ -13,7 +13,10 @@ class BlogApi {
 
     this.apiUrl = process.env.PORTFOLIO_API_URL + '/blogs';
   }
-
+  
+  update(id, data) {
+    return axios.patch(`${this.apiUrl}/${id}`, data, this.config);
+  }
   getById(id) {
     return axios.get(`${this.apiUrl}/${id}`);
   }
@@ -21,6 +24,9 @@ class BlogApi {
   create(data) {
     return axios.post(this.apiUrl, data, this.config);
   }
+
+  
+
 }
 
 export default BlogApi;
