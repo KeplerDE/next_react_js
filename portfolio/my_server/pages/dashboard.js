@@ -22,4 +22,4 @@ const Dashboard = ({user, loading}) => {
   )
 }
 
-export default withAuth(Dashboard)('admin');s
+export default withAuth(Dashboard)('admin');
