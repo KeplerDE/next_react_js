@@ -1,4 +1,5 @@
 // const mongoose = require('mongoose');
+const slugify = require('slugify');
 const Blog = require('../db/models/blog');
 
 exports.getBlogs = async (req, res) => {
@@ -44,8 +45,15 @@ exports.updateBlog1 = async (req, res) => {
       return res.status(422).send(err.message);
     }
 
-    // TODO: Check if user is publishing blog
-    // and if user is publishing then create SLUG
+
+
+    if (body.status && body.status === 'published' && !blog.slug) {
+      blog.slug = slugify(blog.title, {
+        replacement: '-',
+        lower: true
+      });
+    }
+
 
     blog.set(body);
     blog.updateAt = new Date();
