@@ -6,19 +6,25 @@ import Masthead from 'components/shared/Masthead';
 import PortDropdown from 'components/shared/Dropdown';
 import Link from 'next/link';
 
-
 import auth0 from 'utils/auth0';
 import BlogApi from 'lib/api/blogs';
 
 const Dashboard = ({user, blogs}) => {
 
+  const createOption = (blogStatus) => {
+    return blogStatus === 'draft' ? {view: 'Publish Story', value: 'published'}
+                                   : {view: 'Make a Draft', value: 'draft'}
+  }
+
   const createOptions = (blog) => {
+    const option = createOption(blog.status)
 
     return [
-      {key: `${blog._id}-published`, text: 'Published', handlers: { onClick: () => {alert(`Clicking Publish! ${blog._id}`)}}},
+      {key: `${blog._id}-published`, text: option.view, handlers: { onClick: () => {alert(`Changing status to - ${option.value}`)}}},
       {key: `${blog._id}-delete`,text: 'Delete', handlers: { onClick: () => {alert(`Clicking Delete! ${blog._id}`)}}}
     ]
   }
+
   const renderBlogs = (blogs, status) => (
     <ul className="user-blogs-list">
       { blogs.filter(blog => blog.status === status).map(blog =>
