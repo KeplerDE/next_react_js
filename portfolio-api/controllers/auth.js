@@ -20,7 +20,6 @@ exports.checkJwt = jwt({
 
 exports.checkRole = role => (req, res, next) => {
   const user = req.user;
-  console.log(user)
 
   if (user && user[config.AUTH0_NAMESPACE + '/roles'].includes(role)) {
     next();

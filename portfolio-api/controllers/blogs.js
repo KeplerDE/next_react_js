@@ -30,46 +30,18 @@ exports.getBlogsByUser = async (req, res) => {
 exports.createBlog = async (req, res) => {
   const blogData = req.body;
   blogData.userId = req.user.sub;
+  blogData.slug += `-${uniqueSlug()}`;
   const blog = new Blog(blogData);
+  
 
   try {
     const createdBlog = await blog.save();
     return res.json(createdBlog);
   } catch(e) {
-    return res.status(422).send(e);
+    return res.status(422).send(e.message);
   }
 }
 
-
-exports.updateBlog1 = async (req, res) => {
-  const { body, params: {id}} = req;
-  console.log(id)
-  Blog.findById(id, async (err, blog) => {
-    if (err) {
-      return res.status(422).send(err.message);
-    }
-
-
-
-    if (body.status && body.status === 'published' && !blog.slug) {
-      blog.slug = slugify(blog.title, {
-        replacement: '-',
-        lower: true
-      });
-    }
-
-
-    blog.set(body);
-    blog.updateAt = new Date();
-
-    try {
-      const updatedBlog = await blog.save();
-      return res.json(updatedBlog);
-    } catch(err) {
-      return res.status(422).send(err.message);
-    }
-  });
-}
 
 
 const _saveBlog = async blog => {
