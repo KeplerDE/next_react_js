@@ -1,6 +1,37 @@
 // Index -----------
+
+.cover.cover-orange {
+  background-image: linear-gradient(45deg, rgb(85, 60, 23), rgba(174, 100, 100, 0.6));
+}
+
+.flipper {
+  transition: 1s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flipper.isFlipping {
+  transform: rotateY(-180deg);
+}
+
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  transform: rotateY(0deg);
+  z-index: 9999;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
 .cover {
-  background-image: linear-gradient(45deg,#4e3838 0%,#161632 100%);
+  background-image: linear-gradient(45deg,#1d173f 0%,rgba(103, 54, 181, 0.6));
   overflow: hidden;
   position: relative;
 }
@@ -13,21 +44,21 @@
 }
 
 .main-section {
-  top: 150px;
+  top: 1500px;
   width: 100%;
-  padding: 105px 0 0;
+  padding: 150px 0 0;
 }
 
 .hero-section{
   h2 {
-    color: rgb(81, 27, 27);
+    color: rgb(233, 152, 13);
     font-weight: bold;
     margin-bottom: 10px;
   }
 
-  perspective: 1000px;
+  perspective: 700px;
   color: white;
-  width: 400px;
+  width: 550px;
   position: relative;
 
   &-content {
@@ -100,8 +131,8 @@
   height: 100%;
   position: absolute;
   top: 0;
-  box-shadow: -17px 13px 41px rgba(13,78,158,0.6);
-  border: 2px solid #3bace5;
+  box-shadow: -17px 13px 41px rgba(103, 54, 181, 0.6);
+  border: 2px solid #c0ced4;
 
   .shadow-inner {
     width: 100%;
@@ -110,7 +141,7 @@
   }
 }
 
-.shadow-custom-2 {
-  border: 2px solid #f37d49;
-  box-shadow: -17px 13px 41px rgba(13,78,158,0.3);
+.shadow-custom-orange {
+  border: 2px solid #645d5a;
+  box-shadow: -17px 13px 41px rgba(200, 77, 6, 0.6);
 }
