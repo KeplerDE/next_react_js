@@ -7,6 +7,7 @@ import { useGetUser } from '@/actions/user';
 
 
 
+
 const roles = ["Developer", "Python", "Django", "React JS", "NextJS"];
 const Index = () => {
   const [isFlipping, setIsFlipping] = useState(false);
@@ -46,6 +47,7 @@ const Index = () => {
                       <div className="hero-section-content-intro">
                         Have a look at my portfolio and job history.
                       </div>
+
                     </div>
                     <img className="image" src="/images/section-3.jpg"/>
                     <div className="shadow-custom">
