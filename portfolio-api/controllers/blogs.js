@@ -3,20 +3,46 @@ const slugify = require('slugify');
 const Blog = require('../db/models/blog');
 const uniqueSlug = require('unique-slug');
 
+// exports.getBlogs = async (req, res) => {
+//   const blogs = await Blog.find({status: 'published'}).sort({createdAt: -1});
+//   return res.json(blogs);
+// }
+
 exports.getBlogs = async (req, res) => {
   const blogs = await Blog.find({status: 'published'}).sort({createdAt: -1});
-  return res.json(blogs);
+  // const { access_token } = await getAccessToken();
+  const blogsWithUsers = [];
+  const authors = {};
+
+  for (let blog of blogs) {
+    const author = { name: "Densi", user_id: "google-oauth2|118097200051766570711"}
+    authors[author.user_id] = author;
+    blogsWithUsers.push({blog, author});
+  }
+
+
+  return res.json(blogsWithUsers);
 }
+
 
 exports.getBlogById = async (req, res) => {
   const blog = await Blog.findById(req.params.id);
   return res.json(blog);
 }
 
+// exports.getBlogBySlug = async (req, res) => {
+//   const blog = await Blog.findOne({slug: req.params.slug})
+//   return res.json(blog);
+// }
+
 exports.getBlogBySlug = async (req, res) => {
   const blog = await Blog.findOne({slug: req.params.slug})
-  return res.json(blog);
+  const author = { name: "Densi", user_id: "google-oauth2|118097200051766570711", picture: "https://gravatar.com/avatar/03bc45d659056629719a4fb761887ec2?s=400&d=robohash&r=x"}
+
+
+  return res.json({blog, author});
 }
+
 
 exports.getBlogsByUser = async (req, res) => {
   const userId = req.user.sub;

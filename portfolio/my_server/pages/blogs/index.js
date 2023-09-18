@@ -8,7 +8,6 @@ import BlogApi from 'lib/api/blogs';
 
 const Blogs = ({blogs}) => {
   const { data, loading } = useGetUser();
-  debugger
   return (
     <BaseLayout
       navClass="transparent" className="blog-listing-page"
@@ -35,11 +34,22 @@ const Blogs = ({blogs}) => {
   )
 }
 
+// export async function getStaticProps() {
+//   const json = await new BlogApi().getAll();
+//   return {
+//     props: { blogs: json.data },
+//     revalidate: 60 // 
+//   };
+// }
+
 export async function getStaticProps() {
-  const json = await new BlogApi().getAll();
+  const { data } = await new BlogApi().getAll();
+  console.log(data)
+  const blogs = data.map(item => ({...item.blog, author: item.author}))
   return {
-    props: { blogs: json.data },
-    revalidate: 60 // 
-  };
+    props: { blogs },
+    revalidate: 60 //
+  }
 }
+
 export default Blogs;
