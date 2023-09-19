@@ -72,8 +72,9 @@ const Index = () => {
             <Col md="6" className="hero-welcome-wrapper">
               <div className="hero-welcome-text">
                 <h1>
-                  "Hi there! I'm Denis, a junior developer. My portfolio represents projects I've built while learning.
-                   I'd appreciate your advice on improving my skills!"
+                👋 Hi there! I'm Denis, a passionate junior developer with a hunger for learning and creating. 🚀
+
+                Welcome to my portfolio, where I showcase my journey into the world of coding...
                 </h1>
               </div>
               <Typed

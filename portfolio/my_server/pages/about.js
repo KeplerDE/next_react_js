@@ -3,6 +3,7 @@ import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 import { useGetUser } from '@/actions/user';
 import { Row, Col } from 'reactstrap';
+import Home from '@/components/Home';
 
 const About = () => {
   const { data, loading } = useGetUser();
@@ -28,11 +29,13 @@ const About = () => {
         title="About Me - Denis Osipov"
         className="about-page">
         <Row className="mt-5">
+
           <Col md="6">
             <div className="left-side">
               <h1 className={`title ${createFadeInClass()}`}>Hello, Welcome</h1>
               <h4 className={`subtitle ${createFadeInClass()}`}>To About Page</h4>
               <p className={`subsubTitle ${createFadeInClass()}`}>Feel free to read short description about me.</p>
+              <Home />
             </div>
           </Col>
           <Col md="6">
