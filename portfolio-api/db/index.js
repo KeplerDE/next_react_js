@@ -1,5 +1,5 @@
 // Импорт конфигурации для dev среды 
-const config = require('../config/dev');
+const config = require('../config');
 
 // Импорт mongoose - ОРМ для MongoDB
 const mongoose = require('mongoose');

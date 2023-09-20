@@ -15,7 +15,7 @@ exports.getBlogs = async (req, res) => {
   const authors = {};
 
   for (let blog of blogs) {
-    const author = { name: "Densi", user_id: "google-oauth2|118097200051766570711"}
+    const author = { name: "Denis Osipov", user_id: "google-oauth2|118097200051766570711"}
     authors[author.user_id] = author;
     blogsWithUsers.push({blog, author});
   }
@@ -37,7 +37,7 @@ exports.getBlogById = async (req, res) => {
 
 exports.getBlogBySlug = async (req, res) => {
   const blog = await Blog.findOne({slug: req.params.slug})
-  const author = { name: "Densi", user_id: "google-oauth2|118097200051766570711", picture: "https://gravatar.com/avatar/03bc45d659056629719a4fb761887ec2?s=400&d=robohash&r=x"}
+  const author = { name: "Denis Osipov", user_id: "google-oauth2|118097200051766570711", picture: "https://gravatar.com/avatar/03bc45d659056629719a4fb761887ec2?s=400&d=robohash&r=x"}
 
 
   return res.json({blog, author});

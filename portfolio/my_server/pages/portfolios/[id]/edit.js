@@ -52,4 +52,4 @@ const PortfolioEdit = ({user}) => {
 
 
 
-export default withAuth(PortfolioEdit)('guest');
+export default withAuth(PortfolioEdit)('admin');

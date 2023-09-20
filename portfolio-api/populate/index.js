@@ -1,5 +1,5 @@
 // Подключаем модули
-const config = require('../config/dev'); 
+const config = require('../config'); 
 // модуль с конфигом подключения к БД
 
 const mongoose = require('mongoose');
