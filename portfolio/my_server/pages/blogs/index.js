@@ -42,11 +42,11 @@
   //   };
   // }
 
-  export async function getServerSideProps() {
+  export async function getStaticProps() {
     const { data } = await new BlogApi().getAll();  
     const blogs = data.map(item => ({...item.blog, author: item.author}))
     return {
-      props: { blogs, revalidate: 10 }
+      props: { blogs, revalidate: 60 }
 
     }
   }
