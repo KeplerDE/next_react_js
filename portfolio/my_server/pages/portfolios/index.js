@@ -66,7 +66,7 @@ const Portfolios = ({portfolios: initialPortfolios}) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const json = await new PortfolioApi().getAll();
   const portfolios = json.data;
   return {
