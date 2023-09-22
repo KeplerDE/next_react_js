@@ -1,9 +1,10 @@
-<h1 align="center">Welcome to developer-portfolio 👋</h1>
-<a href="https://github.com/KeplerDE/next_react_js">/a>
+# Welcome to developer-portfolio 👋
 
-## Software Developer Portfolio Template built with Next.js, React that helps you showcase your work and skills as a software developer.
+[GitHub Repository](https://github.com/KeplerDE/next_react_js)
 
-## To view a live example, **[click here](https://<##</)**.
+## Software Developer Portfolio Template built with Next.js and React that helps you showcase your work and skills as a software developer.
+
+To view a live example, [click here](https://portfolio-denis-front.vercel.app/).
 
 Feel free to use it as-is or customize it as much as you want.
 
