@@ -15,8 +15,8 @@ class BaseApi {
     this.apiUrl = process.env.PORTFOLIO_API_URL + subPath;
   }
 
-  getAll() {
-    return axios.get(this.apiUrl)
+  getAll(page) {
+    return axios.get(`${this.apiUrl}?page=${page}`);    // интерполяция
   }
   
   update(id, data) {

@@ -8,21 +8,59 @@ const uniqueSlug = require('unique-slug');
 //   return res.json(blogs);
 // }
 
+// exports.getBlogs = async (req, res) => {
+//   const blogs = await Blog.find({status: 'published'}).sort({createdAt: -1});
+//   // const { access_token } = await getAccessToken();
+//   const blogsWithUsers = [];
+//   const authors = {};
+
+//   for (let blog of blogs) {
+//     const author = { name: "Denis Osipov", user_id: "google-oauth2|118097200051766570711"}
+//     authors[author.user_id] = author;
+//     blogsWithUsers.push({blog, author});
+//   }
+
+
+//   return res.json(blogsWithUsers);
+// }
+
+
 exports.getBlogs = async (req, res) => {
-  const blogs = await Blog.find({status: 'published'}).sort({createdAt: -1});
-  // const { access_token } = await getAccessToken();
-  const blogsWithUsers = [];
-  const authors = {};
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 1; // You can set your preferred default limit
 
-  for (let blog of blogs) {
-    const author = { name: "Denis Osipov", user_id: "google-oauth2|118097200051766570711"}
-    authors[author.user_id] = author;
-    blogsWithUsers.push({blog, author});
+  try {
+    const totalBlogs = await Blog.countDocuments({ status: 'published' });
+
+    const blogs = await Blog.find({ status: 'published' })
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    const blogsWithUsers = [];
+    const authors = {};
+
+    for (let blog of blogs) {
+      const author = { name: "Denis Osipov", user_id: "google-oauth2|118097200051766570711" };
+      authors[author.user_id] = author;
+      blogsWithUsers.push({ blog, author });
+    }
+
+    // Optionally, you can provide more information in the response
+    const response = {
+      blogs: blogsWithUsers,
+      currentPage: page,
+      totalPages: Math.ceil(totalBlogs / limit),
+      totalBlogs,
+    };
+
+    return res.json(response);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server Error' });
   }
+};
 
-
-  return res.json(blogsWithUsers);
-}
 
 
 exports.getBlogById = async (req, res) => {
