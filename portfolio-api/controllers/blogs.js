@@ -27,7 +27,7 @@ const uniqueSlug = require('unique-slug');
 
 exports.getBlogs = async (req, res) => {
   const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 1; // You can set your preferred default limit
+  const limit = parseInt(req.query.limit) || 3; // You can set your preferred default limit
 
   try {
     const totalBlogs = await Blog.countDocuments({ status: 'published' });
