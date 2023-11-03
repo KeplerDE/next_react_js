@@ -39,7 +39,7 @@ exports.getBlogs = async (req, res) => {
 
     const blogsWithUsers = [];
     const authors = {};
-
+    
     for (let blog of blogs) {
       const author = { name: "Denis Osipov", user_id: "google-oauth2|118097200051766570711" };
       authors[author.user_id] = author;

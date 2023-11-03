@@ -47,15 +47,22 @@ const BlogDetail = ({blog, author}) => {
 //   return {props: {blog: data}}
 // }
 
-export async function getStaticPaths() {
-  const { data } = await new BlogApi().getAll();
-  const paths = data.blogs.map(({blog}) => ({params: { slug: blog.slug}}));
-  return { paths, fallback: false};
-}
+export async function getServerSideProps({ params }) {
+  const slug = params.slug;
+  const blogApi = new BlogApi();
 
-export async function getStaticProps({params}) {
-  const { data: {blog, author}} = await new BlogApi().getBySlug(params.slug);
-  return {props: {blog, author}}
+  try {
+    const { data: { blog, author } } = await blogApi.getBySlug(slug);
+
+    return {
+      props: { blog, author },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default BlogDetail;
