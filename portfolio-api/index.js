@@ -5,18 +5,21 @@ const express = require('express');
 const server = express();
 const bodyParser = require('body-parser');
 
+
 // Описание асинхронной функции запуска сервера
 async function runServer() {
 
   // Подключение к базе данных 
   await require('./db').connect();
   
-
   server.use(bodyParser.json());
   
-  // Регистрация маршрута для CRUD операций с портфолио
+  // Регистрация маршрута для CRUD операций с портфолио и блогами
   server.use('/api/v1/portfolios', require('./routes/portfolios'));
   server.use('/api/v1/blogs', require('./routes/blogs'));
+
+  // Регистрация маршрута новостей
+  server.use('/api/v1/news', require('./routes/newsRoute'));
 
   // Получение номера порта из ENV или 3001 по умолчанию
   const PORT = parseInt(process.env.PORT, 10) || 3001;
@@ -30,8 +33,7 @@ async function runServer() {
     // Логирование успешного запуска сервера
     console.log('Server ready on port:', PORT);
     
-  })
-
+  });
 }
 
 // Вызов функции запуска сервера 
