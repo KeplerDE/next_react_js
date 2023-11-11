@@ -40,7 +40,7 @@
           <h2>Ideas</h2>
           <span className="subheading">Programming, travelling, thinking...</span>
         </Masthead>
-        <BasePage title="Newest Blogs - Denis Osipov" className="blog-body">
+        <BasePage title="Blogs - Denis Osipov" className="blog-body">
           <Row>
             {blogs.map(blog => (
               <Col key={blog._id} md="10" lg="8" className="mx-auto">
