@@ -18,6 +18,7 @@ Feel free to use it as-is or customize it as much as you want.
 ✔️ Projects\
 ✔️ Blogs - Ideas\
 ✔️ CV\
+✔️ News\
 
 
 
