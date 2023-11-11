@@ -1,0 +1,41 @@
+// styles/NewsComponent.module.scss
+.newsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .newsItem {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+  
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    & h2 {
+      margin-bottom: 10px;
+    }
+  
+    & img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  
+    & p {
+      margin-bottom: 10px;
+    }
+  
+    & a {
+      text-decoration: none;
+      color: #007bff;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }

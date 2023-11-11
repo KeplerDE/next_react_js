@@ -5,8 +5,10 @@
 @import './blogs';
 @import './about';
 @import './portfolio-detail';
+
 // Components
 @import "./components/header";
+@import './news';
 .absolute {
   position: absolute;
 }
