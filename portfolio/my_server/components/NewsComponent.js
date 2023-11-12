@@ -11,7 +11,7 @@ const NewsComponent = ({ articles }) => {
             <img src={article.urlToImage} alt={article.title} className="newsImage" />
           )}
           <p className="newsDescription">{article.description}</p>
-          <a href={article.url} target="_blank" rel="noopener noreferrer" className="newsLink">Читать далее</a>
+          <a href={article.url} target="_blank" rel="noopener noreferrer" className="newsLink">Read more...</a>
         </div>
       ))}
     </div>

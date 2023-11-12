@@ -2,26 +2,35 @@
 import React from 'react';
 import axios from 'axios';
 import NewsComponent from '../components/NewsComponent';
+import BaseLayout from '@/components/layouts/BaseLayout';
+import Masthead from 'components/shared/Masthead';
+import BasePage from '@/components/BasePage';
 
 const NewsPage = ({ articles }) => {
+
+
   return (
-    <NewsComponent articles={articles} />
+    <BaseLayout navClass="transparent" className="blog-listing-page" >
+      <Masthead imagePath="/images/news_bg.png">
+        <h2>API Integrations</h2>
+        <span className="subheading">from https://newsapi.org/</span>
+      </Masthead>
+      <BasePage title="News - Denis Osipov" className="blog-body">  
+      <NewsComponent articles={articles} />
+      </BasePage>
+    </BaseLayout>
   );
 };
 
 export async function getServerSideProps() {
-  // Указываем полный URL для запроса в локальной среде разработки
-  // В продакшн этот URL должен быть изменен на адрес развернутого API
-  const localhost = 'http://localhost:3001'; // Или используйте переменную окружения
+  const localhost = 'http://localhost:3001'; // Adjust URL as needed
   let articles = [];
 
   try {
-    // Используем полный URL в запросе
     const response = await axios.get(`${localhost}/api/v1/news`);
     articles = response.data.articles;
-    console.log(articles); // Логирование для проверки данных
   } catch (error) {
-    console.error('Ошибка при получении новостей на стороне сервера:', error);
+    console.error('Error fetching news:', error);
   }
 
   return {
