@@ -1,7 +1,7 @@
 // pages/news.js
 import React from 'react';
 import axios from 'axios';
-import NewsComponent from '../components/NewsComponent';
+import NewsComponent from '@/components/news/NewsComponent';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import Masthead from 'components/shared/Masthead';
 import BasePage from '@/components/BasePage';
