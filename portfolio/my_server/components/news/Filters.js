@@ -1,7 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-
 const Filters = () => {
   const router = useRouter();
   let queryParams;
@@ -13,10 +12,9 @@ const Filters = () => {
   const countries = ["at", "be", "bg", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hu", "ie", "it", "lt", "lu", "lv", "mt", "nl", "pl", "pt", "ro", "se", "si", "sk"];
   const categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"];
   const pageSizes = [5, 10, 15, 20];
-  const pages = [1, 2, 3, 4, 5];
 
-  const updateQueryParams = (name, value, checked) => {
-    if (checked) {
+  const updateQueryParams = (name, value, shouldSet) => {
+    if (shouldSet) {
       queryParams.set(name, value);
     } else {
       queryParams.delete(name);
@@ -27,6 +25,11 @@ const Filters = () => {
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
     updateQueryParams(name, value, checked);
+  };
+
+  const handleRadioChange = (e) => {
+    const { name, value } = e.target;
+    updateQueryParams(name, value, true);
   };
 
   const handleInputChange = (e) => {
@@ -68,7 +71,6 @@ const Filters = () => {
           </label>
         </div>
       ))}
-
       {/* Category Filter */}
       <h5 className="filter-heading mb-3">Category</h5>
       {categories.map((category) => (
@@ -87,9 +89,6 @@ const Filters = () => {
           </label>
         </div>
       ))}
-
-
-
       {/* PageSize Filter */}
       <h5 className="filter-heading mb-3">Page Size</h5>
       {pageSizes.map((size) => (
@@ -101,33 +100,13 @@ const Filters = () => {
             id={`pageSize-${size}`}
             value={size}
             checked={isChecked("pageSize", size.toString())}
-            onChange={handleCheckboxChange}
+            onChange={handleRadioChange}
           />
           <label className="form-check-label" htmlFor={`pageSize-${size}`}>
             {size}
           </label>
         </div>
       ))}
-
-      {/* Page Filter */}
-      <h5 className="filter-heading mb-3">Page</h5>
-      {pages.map((page) => (
-        <div className="form-check" key={page}>
-          <input
-            className="form-check-input"
-            type="radio"
-            name="page"
-            id={`page-${page}`}
-            value={page}
-            checked={isChecked("page", page.toString())}
-            onChange={handleCheckboxChange}
-          />
-          <label className="form-check-label" htmlFor={`page-${page}`}>
-            {page}
-          </label>
-        </div>
-      ))}
-
       <hr />
     </div>
   );

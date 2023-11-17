@@ -19,8 +19,8 @@ async function runServer() {
   server.use('/api/v1/blogs', require('./routes/blogs'));
 
   // Регистрация маршрута новостей
-  server.use('/api/v1/news', require('./routes/newsRoutes'));
-
+  server.use('/api/v1/news', require('./routes/news'));
+  server.use('/api/v1/news_query', require('./routes/newsRoutes'));
   // Получение номера порта из ENV или 3001 по умолчанию
   const PORT = parseInt(process.env.PORT, 10) || 3001;
 

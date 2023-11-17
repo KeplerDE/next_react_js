@@ -3,6 +3,8 @@ import "@/styles/main.scss";
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'slate-simple-editor/dist/index.css';
+;
+
 
 import { useState, useEffect } from 'react';
 

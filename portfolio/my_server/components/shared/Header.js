@@ -96,8 +96,8 @@ const NewsDropdown = () => {
         <DropdownItem>
           <BsNavLink
             className="port-dropdown-item"
-            href="/news/economy"
-            title="Economy"
+            href="/news/checkbox"
+            title="News more"
           />
         </DropdownItem>
         <DropdownItem>
