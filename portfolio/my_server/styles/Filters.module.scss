@@ -1,0 +1,42 @@
+// Filters.module.scss
+.sidebar {
+  margin-top: 3rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.filter-heading {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #343a40;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+.form-check {
+  margin-bottom: 0.5rem;
+}
+
+.form-check-input {
+  margin-right: 0.5rem;
+}
+
+.form-check-label {
+  color: #343a40;
+}
+
+.divider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid #dee2e6;
+}

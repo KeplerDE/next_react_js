@@ -34,16 +34,27 @@ const News = ({ newsData }) => {
         <div className="col-xl-3 col-lg-4">
           <Filters />
         </div>
-        <div className="col-xl-9 col-lg-8 content-left-offset">
+        <div className="col-xl-9 col-lg-8">
           <h4 className="page-title">News Articles</h4>
-          {articles.map((article, index) => (
-            <div key={index} className="article">
-              <h5>{article.title}</h5>
-              <p>{article.description}</p>
-            </div>
-          ))}
+          <div className="newsContainer">
+            {articles.map((article, index) => (
+              <div key={index} className="newsItem">
+                <h5 className="newsTitle">{article.title}</h5>
+                {article.urlToImage && (
+                  <img 
+                    src={article.urlToImage} 
+                    alt={article.title} 
+                    className="newsImage"
+                    onError={(e) => { e.target.onerror = null; e.target.src = 'path_to_default_image.jpg'; }}
+                  />
+                )}
+                <p className="newsDescription">{article.description}</p>
+                <a href={article.url} target="_blank" rel="noopener noreferrer" className="newsLink">Read more...</a>
+              </div>
+            ))}
+          </div>
           {totalResults > 0 && (
-            <div className="d-flex justify-content-center mt-5">
+            <div className="paginationContainer">
               <Pagination
                 activePage={page}
                 itemsCountPerPage={pageSize}

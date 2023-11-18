@@ -7,7 +7,7 @@ const NEWS_API_KEY = config.NEWS_API_KEY;
 exports.getNews = async (req, res) => {
     try {
         const country = req.query.country || 'us';
-        console.log(`getNews83213: country=${country}`); // Логирование параметров
+        console.log(`getNews: country=${country}`); 
 
         const response = await axios.get(NEWS_API_ENDPOINT, {
             params: {

@@ -9,7 +9,7 @@ router.use((req, res, next) => {
 });
 
 // Определяем маршруты
-router.get('/top-headlines', getTopHeadlines);
+router.get('/', getTopHeadlines);
 
 
 module.exports = router;

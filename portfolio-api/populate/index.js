@@ -5,8 +5,6 @@ const config = require('../config');
 const mongoose = require('mongoose');
 // модуль для работы с MongoDB 
 
-const fakeDB = require('./FakeDB');
-// модуль с методами генерации тестовых данных
 
 
 // Подключаемся к MongoDB
