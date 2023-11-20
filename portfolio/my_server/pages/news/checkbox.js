@@ -19,7 +19,7 @@ const Checkbox = ({ newsData }) => {
 
 export async function getServerSideProps(context) {
   // URL вашего серверного маршрута
-  const BASE_URL = "http://localhost:3001/api/v1/news_query"; // Измените на соответствующий URL
+  const BASE_URL = "https://portfolio-keplerde-ccae479f4d02.herokuapp.com/api/v1/news_query"; // Измените на соответствующий URL
 
   // Получение параметров запроса из контекста
   const queryParams = context.query;

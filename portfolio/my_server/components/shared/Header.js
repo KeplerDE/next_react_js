@@ -101,11 +101,11 @@ const NewsDropdown = () => {
           />
         </DropdownItem>
         <DropdownItem>
-          <BsNavLink
+          {/* <BsNavLink
             className="port-dropdown-item"
             href="/news/technology"
             title="Technology"
-          />
+          /> */}
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

@@ -23,7 +23,7 @@ const NewsPage = ({ articles }) => {
 };
 
 export async function getServerSideProps() {
-  const localhost = 'http://localhost:3001'; // Adjust URL as needed
+  const localhost = 'https://portfolio-keplerde-ccae479f4d02.herokuapp.com'; // Adjust URL as needed
   let articles = [];
 
   try {
