@@ -16,6 +16,7 @@
     "dotenv-webpack": "^1.7.0",
     "moment": "^2.29.4",
     "next": "^12.3.4",
+    "next-i18next": "^15.1.1",
     "react": "18.2.0",
     "react-datepicker": "^2.15.0",
     "react-dom": "18.2.0",

@@ -1,0 +1,15 @@
+{
+    "home": "Home",
+    "about": "About",
+    "portfolios": "Portfolios",
+    "blogs": "Blogs",
+    "cv": "CV",
+    "news": "News",
+    "newsMore": "More News",
+    "login": "Login",
+    "logout": "Logout",
+    "admin": "Admin",
+    "createPortfolio": "Create Portfolio",
+    "blogEditor": "Blog Editor",
+    "dashboard": "Dashboard"
+  }

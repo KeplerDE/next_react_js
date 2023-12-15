@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+
 import { isAuthorized } from '@/utils/auth0';
 import {
   Collapse,
@@ -28,15 +31,15 @@ const BsNavBrand = () => (
   </Link>
 );
 
-const LoginLink = () => (
-  <a className="nav-link port-navbar-link" href="/api/v1/login">Login</a>
+const LoginLink = ({ t }) => (
+  <a className="nav-link port-navbar-link" href="/api/v1/login">{t('login')}</a>
 );
 
-const LogoutLink = () => (
-  <a className="nav-link port-navbar-link" href="/api/v1/logout">Logout</a>
+const LogoutLink = ({ t }) => (
+  <a className="nav-link port-navbar-link" href="/api/v1/logout">{t('logout')}</a>
 );
 
-const AdminMenu = () => {
+const AdminMenu = ({ t }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Dropdown
@@ -45,28 +48,28 @@ const AdminMenu = () => {
       isOpen={isOpen}
       toggle={() => setIsOpen(!isOpen)}>
       <DropdownToggle className="port-dropdown-toggle" nav caret>
-        Admin
+        {t('admin')}
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem>
           <BsNavLink
             className="port-dropdown-item"
             href="/portfolios/new"
-            title="Create Portfolio"
+            title={t('createPortfolio')}
           />
         </DropdownItem>
         <DropdownItem>
           <BsNavLink
             className="port-dropdown-item"
             href="/blogs/editor"
-            title="Blog Editor"
+            title={t('blogEditor')}
           />
         </DropdownItem>
         <DropdownItem>
           <BsNavLink
             className="port-dropdown-item"
             href="/dashboard"
-            title="Dashboard"
+            title={t('dashboard')}
           />
         </DropdownItem>
       </DropdownMenu>
@@ -74,7 +77,7 @@ const AdminMenu = () => {
   );
 };
 
-const NewsDropdown = () => {
+const NewsDropdown = ({ t }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Dropdown
@@ -83,29 +86,22 @@ const NewsDropdown = () => {
       isOpen={isOpen}
       toggle={() => setIsOpen(!isOpen)}>
       <DropdownToggle className="port-dropdown-toggle" nav caret>
-        News
+        {t('news')}
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem>
           <BsNavLink
             className="port-dropdown-item"
             href="/news/"
-            title="News"
+            title={t('news')}
           />
         </DropdownItem>
         <DropdownItem>
           <BsNavLink
             className="port-dropdown-item"
             href="/news/checkbox"
-            title="News more"
+            title={t('newsMore')}
           />
-        </DropdownItem>
-        <DropdownItem>
-          {/* <BsNavLink
-            className="port-dropdown-item"
-            href="/news/technology"
-            title="Technology"
-          /> */}
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
@@ -114,7 +110,13 @@ const NewsDropdown = () => {
 
 const Header = ({ user, loading, className }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const { t } = useTranslation('Header');
   const toggle = () => setIsOpen(!isOpen);
+
+  const switchLanguage = (lang) => {
+    router.push(router.pathname, router.asPath, { locale: lang });
+  }
 
   return (
     <div>
@@ -125,40 +127,47 @@ const Header = ({ user, loading, className }) => {
         <BsNavBrand />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+        <Nav className="mr-auto" navbar>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/" title="Home" />
+              <BsNavLink href="/" title={t('home')} />
             </NavItem>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/about" title="About" />
+              <BsNavLink href="/about" title={t('about')} />
             </NavItem>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/portfolios" title="Portfolios" />
+              <BsNavLink href="/portfolios" title={t('portfolios')} />
             </NavItem>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/blogs" title="Blogs" />
+              <BsNavLink href="/blogs" title={t('blogs')} />
             </NavItem>  
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/cv" title="Cv" />
+              <BsNavLink href="/cv" title={t('cv')} />
             </NavItem>
             <NavItem className="port-navbar-item">
-              <NewsDropdown />
+              <NewsDropdown t={t} />
             </NavItem>
           </Nav>
           <Nav navbar>
+            {/* Кнопки для переключения языков */}
+            <NavItem className="port-navbar-item" onClick={() => switchLanguage('en')}>
+              <span className="nav-link port-navbar-link">EN</span>
+            </NavItem>
+            <NavItem className="port-navbar-item" onClick={() => switchLanguage('de')}>
+              <span className="nav-link port-navbar-link">DE</span>
+            </NavItem>
             {!loading &&
               <>
                 {user &&
                   <>
-                    {isAuthorized(user, 'admin') && <AdminMenu />}
+                    {isAuthorized(user, 'admin') && <AdminMenu t={t} />}
                     <NavItem className="port-navbar-item">
-                      <LogoutLink />
+                      <LogoutLink t={t} />
                     </NavItem>
                   </>
                 }
                 {!user &&
                   <NavItem className="port-navbar-item">
-                    <LoginLink />
+                    <LoginLink t={t} />
                   </NavItem>
                 }
               </>
