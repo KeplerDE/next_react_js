@@ -6,10 +6,10 @@ import Typed from 'react-typed';
 import { useGetUser } from '@/actions/user';
 
 
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const roles = ["Developer", "Python", "Django", "React JS", "NextJS"];
-const Index = () => {
+const Index = (_props) => {
   const [isFlipping, setIsFlipping] = useState(false);
   const { data, loading } = useGetUser();
   const flipInterval = useRef();
@@ -100,5 +100,15 @@ const Index = () => {
     </BaseLayout>
   )
 }
+
+export const getStaticProps = async ({
+  locale,
+}) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? 'en', [
+      'Header', 'common'
+    ])),
+  },
+})
 
 export default Index;
