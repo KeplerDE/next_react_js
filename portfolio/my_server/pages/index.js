@@ -1,18 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 import { Container, Row, Col } from 'reactstrap';
 import Typed from 'react-typed';
 import { useGetUser } from '@/actions/user';
-
-
+import { useTranslation } from 'next-i18next'; 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Snowflakes from '@/components/shared/Snowflakes'; 
+
 
 const roles = ["Developer", "Python", "Django", "React JS", "NextJS"];
 const Index = (_props) => {
   const [isFlipping, setIsFlipping] = useState(false);
   const { data, loading } = useGetUser();
   const flipInterval = useRef();
+  const { t } = useTranslation('index'); // Использование useTranslation
 
   useEffect(() => {
     startAnimation();
@@ -31,7 +33,8 @@ const Index = (_props) => {
       loading={loading}
       navClass="transparent"
       className={`cover ${isFlipping ? 'cover-orange' : 'cover-blue'}`}>
-      <BasePage indexPage title="Portfolio - Denis Osipov"></BasePage>
+      <Snowflakes /> 
+      <BasePage indexPage title={t('pageTitle')}></BasePage>
       <div className="main-section">
         <div className="background-image">
           <img src="/images/background-index.png" />
@@ -43,9 +46,9 @@ const Index = (_props) => {
                 <div className={`flipper ${isFlipping ? 'isFlipping' : ''}`}>
                   <div className="front">
                     <div className="hero-section-content">
-                      <h2> Full Stack </h2>
+                      <h2>{t('frontTitle')}</h2>
                       <div className="hero-section-content-intro">
-                        Have a look at my portfolio and job history.
+                        {t('frontIntro')}
                       </div>
 
                     </div>
@@ -56,9 +59,9 @@ const Index = (_props) => {
                   </div>
                   <div className="back">
                     <div className="hero-section-content">
-                      <h2>Web Developer </h2>
+                      <h2>{t('backTitle')}</h2>
                       <div className="hero-section-content-intro">
-                        Have a look at my portfolio and job history.
+                        {t('backIntro')}
                       </div>
                     </div>
                     <img className="image" src="/images/section-7.jpg"/>
@@ -72,9 +75,7 @@ const Index = (_props) => {
             <Col md="6" className="hero-welcome-wrapper">
               <div className="hero-welcome-text">
                 <h1>
-                👋 ! I'm Denis, a passionate junior developer with a hunger for learning and creating. 🚀
-
-                Welcome to my portfolio, where I showcase my journey into the world of coding...
+                {t('welcomeMessage')}
                 </h1>
               </div>
               <Typed
@@ -90,7 +91,7 @@ const Index = (_props) => {
               />
               <div className="hero-welcome-bio">
                 <h1>
-                  Let's take a look on my work and ideas...
+                  {t('bioMessage')}
                 </h1>
               </div>
             </Col>
@@ -106,7 +107,7 @@ export const getStaticProps = async ({
 }) => ({
   props: {
     ...(await serverSideTranslations(locale ?? 'en', [
-      'Header', 'common'
+      'Header', 'common', 'index'
     ])),
   },
 })
