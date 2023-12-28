@@ -41,7 +41,7 @@ const Index = (_props) => {
         </div>
         <Container>
           <Row>
-            <Col md="6">
+            <Col xs="12" md="6" className="order-2 order-md-1">
               <div className="hero-section">
                 <div className={`flipper ${isFlipping ? 'isFlipping' : ''}`}>
                   <div className="front">
@@ -72,7 +72,7 @@ const Index = (_props) => {
                 </div>
               </div>
             </Col>
-            <Col md="6" className="hero-welcome-wrapper">
+            <Col xs="12" md="6" className="hero-welcome-wrapper">
               <div className="hero-welcome-text">
                 <h1>
                 {t('welcomeMessage')}

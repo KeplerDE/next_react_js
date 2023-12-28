@@ -1,45 +1,40 @@
-
-// HEADER
 .port-navbar.port-default {
   width: 100%;
   z-index: 15;
   padding: 40px;
 
   &.with-bg {
-    background-image: linear-gradient(45deg,#504780 0%,rgba(103, 54, 181, 0.6));
+    background-image: linear-gradient(45deg, #504780 0%, rgba(103, 54, 181, 0.6));
   }
 
-  .port-navbar {
-    &-brand {
-      color: white;
-      font-size: 24px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: bold;
-    }
+  .port-navbar-brand {
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
 
-    &-item {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
+  .port-navbar-item {
+    margin: 0 10px;
+  }
 
-    &-link {
-      color: white;
-      font-weight: bold;
-      letter-spacing: 0.8px;
-      font-size: 18px;
-      text-transform: uppercase;
+  .port-navbar-link {
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    font-size: 18px;
+    text-transform: uppercase;
 
-      &.active {
+    &.active {
       color: #dba919;
-      }
+    }
 
-      &:hover, &:focus {
-        color: #dba919;
-      }
+    &:hover, &:focus {
+      color: #dba919;
     }
   }
-
+  
   .port-dropdown-menu {
     .dropdown-item:active {
       background-color: #f5f5f5;
@@ -55,8 +50,37 @@
 
     .port-dropdown-toggle {
       color: white;
-      margin-left: 10px;
-      margin-right: 10px;
+      margin: 0 10px;
     }
+  }
+}
+
+@media (max-width: 991px) {
+  .port-navbar.port-default {
+    padding: 37px;
+    background-color: #4b5e71; 
+  }
+
+  .port-navbar-link, .port-dropdown-toggle {
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .port-navbar-item, .port-dropdown-menu {
+    margin: 5px 0;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    background-color: #4b5e71; 
+  }
+
+  .navbar-collapse.collapsing {
+    transform: translateY(100%); 
+  }
+
+  .navbar-collapse.show {
+    transform: translateY(0);
   }
 }
